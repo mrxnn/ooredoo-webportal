@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 
 const Home: NextPage = () => {
-  let [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState("");
 
   return (
     <>

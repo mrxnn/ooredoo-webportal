@@ -1,6 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Navbar, Button } from "@mayurarx/ooredoo-design-system";
+import {
+  Navbar,
+  Button,
+  Sidebar,
+  UsageCard,
+  OoredooCard,
+  QuickAccessCard,
+} from "@mayurarx/ooredoo-design-system";
 import { useState } from "react";
 
 const Home: NextPage = () => {
@@ -14,22 +21,235 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* navbar */}
       <Navbar
         activeHref={activeLink}
         onSearch={(key) => {
           setActiveLink(key);
         }}
-        className="fixed left-1/2 w-full -translate-x-1/2"
       />
 
-      <div className="mx-auto flex h-screen max-w-[1280px] flex-col items-center justify-center space-y-4">
-        <p className="text-2xl">Welcome to Ooredoo Dashboard</p>
-        <Button variant="filled" className="rounded-md px-6 py-3">
-          Get Started
-        </Button>
+      {/* breadcrumb */}
+      <div className="mx-auto max-w-5xl">
+        <p className="mt-8">My Account - Dashboard</p>
+      </div>
+
+      {/* main content */}
+      <div className="mx-auto mt-8 flex max-w-5xl items-start gap-x-8 pb-[80px]">
+        {/* sidebar */}
+        <Sidebar
+          items={[
+            {
+              name: "Dashboard",
+              href: "/dashboard",
+              isActive: false,
+            },
+            {
+              name: "Bundles",
+              href: "/bundles",
+              isActive: false,
+              children: [
+                {
+                  name: "Exclusive Bundles",
+                  href: "/bundles/exclusive",
+                  isActive: true,
+                },
+                {
+                  name: "Voice",
+                  href: "/bundles/voice",
+                  isActive: false,
+                },
+                {
+                  name: "Data",
+                  href: "/bundles/data",
+                  isActive: false,
+                },
+                {
+                  name: "Smart",
+                  href: "/bundles/smart",
+                  isActive: false,
+                },
+              ],
+            },
+            {
+              name: "Services",
+              href: "/services",
+              isActive: false,
+            },
+            {
+              name: "Noudjoum",
+              href: "/noudjoum",
+              isActive: false,
+            },
+            {
+              name: "Support",
+              href: "/support",
+              isActive: false,
+              children: [
+                {
+                  name: "FAQ",
+                  href: "/support/faq",
+                  isActive: false,
+                },
+                {
+                  name: "Contact Us",
+                  href: "/support/contact",
+                  isActive: false,
+                },
+              ],
+            },
+          ]}
+        />
+
+        {/* sidebar-content */}
+        <div className="flex-1">
+          {/* welcome card */}
+          <div className="flex items-center rounded-xl border bg-[#FBFBFB] px-7 py-8">
+            <div className="mr-[10px] aspect-square w-16 rounded-full bg-slate-300"></div>
+            <div className="mr-auto">
+              <p className="text-xl font-bold text-red-600">Good Morning!</p>
+              <p className="opacity-50">Mohamad Abdullah</p>
+            </div>
+            <Button className="mr-2 rounded-full px-7 py-3" variant="filled">
+              Digital Wallet
+            </Button>
+            <Button className="rounded-full px-7 py-3" variant="filled">
+              Weather & Prayer Times
+            </Button>
+          </div>
+
+          {/* usage card */}
+          <div className="mt-10">
+            <p className="mb-3">My Usage</p>
+            <div className="flex gap-x-3">
+              <UsageCard
+                className="flex-1"
+                icon={
+                  <>
+                    <img
+                      src="https://ooredoo-design-system.vercel.app/static/media/sim_card.8b23d966.png"
+                      alt=""
+                    />
+                  </>
+                }
+                type="Allocation"
+                title="Maxi Internet 1000"
+                description="4GB + FB + 2000DZD"
+                extras="Valid till 10-10-2023"
+                titleColor="teal"
+              />
+              <UsageCard
+                className="flex-1"
+                icon={
+                  <>
+                    <img
+                      src="https://ooredoo-design-system.vercel.app/static/media/sim_card.8b23d966.png"
+                      alt=""
+                    />
+                  </>
+                }
+                type="Allocation"
+                title="Maxi Internet 1000"
+                description="4GB + FB + 2000DZD"
+                extras="Valid till 10-10-2023"
+                titleColor="teal"
+              />
+            </div>
+          </div>
+
+          {/* ooredoo bundles */}
+          <div className="mt-10 rounded-xl border px-5 py-6">
+            <div className="mb-3 flex items-center justify-between">
+              <p>My Ooredoo Bundles</p>
+              <p className="text-sm font-bold text-red-500">View All</p>
+            </div>
+            <div className="flex gap-x-3">
+              <OoredooCard
+                title="100DA BUNDLE"
+                subtitle="For My Ooredoo users"
+                description="+ Unlimited Youtube"
+                label="1 GB"
+                className="bg-primary-teal"
+                image="https://ooredoo-design-system.vercel.app/static/media/ooredoo_card_img.68c32747.png"
+              />
+              <OoredooCard
+                title="100DA BUNDLE"
+                subtitle="For My Ooredoo users"
+                description="+ Unlimited Youtube"
+                label="1 GB"
+                className="bg-[#EB9592]"
+                image="https://ooredoo-design-system.vercel.app/static/media/ooredoo_card_img.68c32747.png"
+              />
+            </div>
+          </div>
+
+          {/* ooredoo services */}
+          <div className="mt-10 rounded-xl border px-5 py-6">
+            <div className="mb-3 flex items-center justify-between">
+              <p>My Ooredoo Services</p>
+              <p className="text-sm font-bold text-red-500">View All</p>
+            </div>
+            <div className="flex gap-x-3">
+              <OoredooCard
+                title="100DA BUNDLE"
+                subtitle="For My Ooredoo users"
+                description="+ Unlimited Youtube"
+                label="1 GB"
+                className="bg-[#FCD130]"
+                image="https://ooredoo-design-system.vercel.app/static/media/ooredoo_card_img.68c32747.png"
+              />
+              <OoredooCard
+                title="100DA BUNDLE"
+                subtitle="For My Ooredoo users"
+                description="+ Unlimited Youtube"
+                label="1 GB"
+                className="bg-primary-teal"
+                image="https://ooredoo-design-system.vercel.app/static/media/ooredoo_card_img.68c32747.png"
+              />
+            </div>
+          </div>
+
+          {/* Quick access */}
+          <div className="mt-10 rounded-xl border px-5 py-6">
+            <div className="mb-3 flex items-center justify-between">
+              <p>Quick Access</p>
+              <p className="text-sm font-bold text-red-500">View All</p>
+            </div>
+            <div className="flex justify-between">
+              <QuickAccessCard
+                title="NOUDJOUM"
+                description="Earn points and redeem rewards"
+                extras="1000 DA"
+                image="https://ooredoo-design-system.vercel.app/static/media/quick_access_icon.dc392113.png"
+              />
+              <QuickAccessCard
+                title="NOUDJOUM"
+                description="Earn points and redeem rewards"
+                extras="1000 DA"
+                image="https://ooredoo-design-system.vercel.app/static/media/quick_access_icon.dc392113.png"
+              />
+              <QuickAccessCard
+                title="NOUDJOUM"
+                description="Earn points and redeem rewards"
+                extras="1000 DA"
+                image="https://ooredoo-design-system.vercel.app/static/media/quick_access_icon.dc392113.png"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
 };
 
 export default Home;
+
+/**
+ * 
+ * title: '100 DA BUNDLE',
+  subtitle: 'FOR My ooredoo users',
+  description: '+ Unlimited Youtube',
+  label: '1 GB',
+  image: img,
+  className: 'bg-primary-teal',
+ */
